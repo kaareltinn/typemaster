@@ -8,7 +8,7 @@ export var StatsArea = React.createClass({
           <b>Words per minute:</b><span> 0</span>
         </p>
         <p>
-          <b>Accuracy:</b><span> 0%</span>
+          <b>Accuracy:</b><span> {this.props.accuracy}%</span>
         </p>
       </div>
     );
