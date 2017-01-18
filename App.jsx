@@ -9,7 +9,9 @@ export var App = React.createClass({
       {
         words: "cat dog mouse".split(''),
         typed: [],
-        accuracy: 0
+        accuracy: 0,
+        startTime: new Date().valueOf(),
+        wpm: 0
       }
     );
   },
@@ -17,11 +19,13 @@ export var App = React.createClass({
   handleTyping: function(e) {
     var typed = e.target.value.split('');
     var accuracy = this.computeAccuracy(this.state.words, typed);
+    var wpm = this.computeWpm(this.state.typed, this.state.startTime);
 
     this.setState((prevState, props) => (
       {
         typed: typed,
-        accuracy: accuracy
+        accuracy: accuracy,
+        wpm: wpm
       }
     ));
   },
@@ -34,12 +38,19 @@ export var App = React.createClass({
     return (hits / words.length) * 100;
   },
 
+  computeWpm: function(typed, startTime) {
+    var currentTime = new Date().valueOf();
+    var minutes = ((currentTime - startTime) / 1000) / 60;
+    var words = typed.join('').split(' ');
+    return words.length / minutes;
+  },
+
   render: function() {
     return (
       <div>
         <WordArea words={this.state.words} typed={this.state.typed}/>
         <TypeArea handler={this.handleTyping}/>
-        <StatsArea accuracy={this.state.accuracy}/>
+        <StatsArea wpm={this.state.wpm} accuracy={this.state.accuracy}/>
       </div>
     );
   }
