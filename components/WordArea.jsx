@@ -15,7 +15,12 @@ export var WordArea = React.createClass({
     });
     return (
       <div>
-        {chars} 
+        <p>
+          {chars} 
+        </p>
+        <p>
+          {this.props.typed} 
+        </p>
       </div>
     );
   }

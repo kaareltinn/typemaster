@@ -1,14 +1,11 @@
 import React from 'react';
 
-export var TypeArea = React.createClass({
-  render: function() {
-    return (
-      <div>
-        <input
-          type="text"
-          onChange={this.props.handler}
-        />
-      </div>
-    );
-  }
-});
+export const TypeArea = (props) => {
+  const handleUserInput = (e) => props.handler(e.target.value);
+
+  return(
+    <input
+      onChange={handleUserInput}
+    />
+  )
+}
