@@ -1,7 +1,7 @@
 import React from 'react';
-import { WordArea } from './WordArea.jsx';
-import { TypeArea } from './TypeArea.jsx';
-import { StatsArea } from './StatsArea.jsx';
+import WordArea from './WordArea.jsx';
+import TypeArea from './TypeArea.jsx';
+import StatsArea from './StatsArea.jsx';
 
 const AppBox = (props) => {
   return (

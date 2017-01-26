@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const TypeArea = (props) => {
+const TypeArea = (props) => {
   const handleUserInput = (e) => props.handler(e.target.value);
 
   return(
@@ -9,3 +9,4 @@ export const TypeArea = (props) => {
     />
   )
 }
+ export default TypeArea
