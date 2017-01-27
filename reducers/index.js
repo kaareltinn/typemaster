@@ -7,9 +7,7 @@ const initialWpm = 0
 const initialState = {
   words: initialWords,
   typed: initialTyped,
-  accuracy: initialAccuracy,
   startTime: initialStartTime,
-  wpm: initialWpm
 }
 
 const typingReducer = (state = initialState, action) => {
@@ -17,16 +15,14 @@ const typingReducer = (state = initialState, action) => {
     case 'TYPE_CHAR':
       const currentlyTyped = action.text.split('')
       return Object.assign({}, state, {
-        typed: currentlyTyped,
-        accuracy: computeAccuracy(state.words, currentlyTyped),
-        wpm: computeWpm(currentlyTyped, state.startTime)
+        typed: currentlyTyped
       })
     default:
       return state
   }
 }
 
-const computeAccuracy = (words, typed) => {
+export const computeAccuracy = (words, typed) => {
   const hits = typed.reduce((acc, current, index) => {
     if (current === words[index]) return acc + 1;
     else return acc;
@@ -34,7 +30,7 @@ const computeAccuracy = (words, typed) => {
   return (hits / words.length) * 100
 }
 
-const computeWpm = (typed, startTime) => {
+export const computeWpm = (typed, startTime) => {
   const currentTime = new Date().valueOf()
   const minutes = ((currentTime - startTime) / 1000) / 60
   const words = typed.join('').split(' ')

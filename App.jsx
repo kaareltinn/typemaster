@@ -7,9 +7,7 @@ const mapStateToProps = (state) => {
   return {
     words: state.words,
     typed: state.typed,
-    accuracy: state.accuracy,
-    startTime: state.startTime,
-    wpm:  state.wpm
+    startTime: state.startTime
   }
 }
 
