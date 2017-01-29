@@ -25,7 +25,7 @@
     "sinon-chai": "^2.8.0"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "mocha test/*/**.spec.js",
     "start": "webpack-dev-server"
   },
   "author": "",
