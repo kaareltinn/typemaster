@@ -8,5 +8,8 @@ global.chai = require('chai');
 global.expect = chai.expect;
 global.sinon = require('sinon');
 
+
+const chaiEnsyme = require('chai-enzyme');
 const sinonChai = require('sinon-chai');
 chai.use(sinonChai);
+chai.use(chaiEnsyme());

@@ -1,26 +1,14 @@
-const initialWords = "cat dog mouse".split('')
-const initialTyped = []
-const initialAccuracy = 0
-const initialStartTime = new Date().valueOf()
-const initialWpm = 0
+import { combineReducers } from 'redux'
+import reduceReducers from 'reduce-reducers'
+import typingReducer from './TypingReducer'
+import statsReducer from './StatsReducer'
+import sharedReducer from './SharedReducer'
 
-const initialState = {
-  words: initialWords,
-  typed: initialTyped,
-  startTime: initialStartTime,
-}
+const reducer = combineReducers({
+  typing: typingReducer,
+  stats: statsReducer
+})
 
-const typingReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'TYPE_CHAR':
-      const currentlyTyped = action.text.split('')
-      return Object.assign({}, state, {
-        typed: currentlyTyped
-      })
-    default:
-      return state
-  }
-}
 
 export const computeAccuracy = (words, typed) => {
   const hits = typed.reduce((acc, current, index) => {
@@ -30,11 +18,11 @@ export const computeAccuracy = (words, typed) => {
   return (hits / words.length) * 100
 }
 
-export const computeWpm = (typed, startTime) => {
-  const currentTime = new Date().valueOf()
-  const minutes = ((currentTime - startTime) / 1000) / 60
+export const computeWpm = (typed, seconds) => {
+  if (seconds === 0 || typed.length === 0) return 0
+  const minutes = seconds / 60
   const words = typed.join('').split(' ')
   return words.length / minutes
 }
 
-export default typingReducer
+export default reducer

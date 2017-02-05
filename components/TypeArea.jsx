@@ -1,12 +1,15 @@
-import React from 'react';
+import React from 'react'
 
-const TypeArea = (props) => {
-  const handleUserInput = (e) => props.handler(e.target.value);
+const TypeArea = ({ started, onTyping }) => {
+  const handleUserInput = (e) => onTyping(e.target.value);
+  const input = started ?
+    <input onChange={handleUserInput} /> :
+    <input disabled="true" />
 
   return(
-    <input
-      onChange={handleUserInput}
-    />
+    <div>
+      {input}
+    </div>
   )
 }
  export default TypeArea
